@@ -23,7 +23,7 @@ module.exports = function(Callout) {
 			"Bucket": bucket,
 			"Key": key,
 			"ACL": 'public-read',
-			"Content-Type": mimeFromBuffer.mime,
+			"ContentType": mimeFromBuffer.mime,
 			"Body": image
 		}, function(err) {
 			if(err)
