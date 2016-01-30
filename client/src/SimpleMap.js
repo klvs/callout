@@ -9,7 +9,7 @@ export default function SimpleMap (props) {
     center = {lat: -25.363882, lng: 131.044922};
   }
   return (
-    <section style={{height: "100%"}}>
+    <section>
       <GoogleMap containerProps={{
           style: {
             height: "50%",
