@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Location from './Location';
-import BSNav from './BSNav';
+import BSNav from './BSNav'
+import { Row } from 'react-bootstrap'
+import SubmitButton from './SubmitButton'
 import './geo';
+import CalloutThumbs from './CalloutThumbs'
+import * as constants from './constants'
+
 export default class Home extends Component {
 
 	constructor(props){
@@ -15,6 +20,7 @@ export default class Home extends Component {
 		      key: "Taiwan",
 		      defaultAnimation: 2,
 	    	}],
+	    	callouts: [], // empty to start
 	  	}
 		this.render = this.render.bind(this);
 	}
@@ -43,14 +49,24 @@ export default class Home extends Component {
 			      defaultAnimation: 2,
 		    	}],
 	  		})
-		})		
+		})
+
+		// get the data
+		fetch(constants.API_ROOT + 'callouts').then((request)=>{
+			return request.json()
+		}).then((response=>{
+			console.log(response);
+			this.setState({callouts: response})
+		}))
 	}
 
   render() {
     return (
 	    	<div className="container">
 	    	<BSNav/>
-		    	<Location value={this.state.markers}/>
+		    <Location value={this.state.markers}/>
+		    <SubmitButton/>
+		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
 
     );
