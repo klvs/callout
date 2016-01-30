@@ -7,10 +7,10 @@
     "validateUpsert": true
   },
   "properties": {
-	"time": {
-	  "type": "date",
-	  "require": false
-	},
+    "time": {
+      "type": "date",
+      "require": false
+    },
     "geo": {
       "type": "object",
       "required": true
