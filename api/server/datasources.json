@@ -3,5 +3,11 @@
     "name": "db",
     "connector": "memory",
     "file": "db.json"
+  },
+  "s3": {
+  	  "connector": "loopback-component-storage",
+  	  "name": "s3"
+
   }
+
 }
