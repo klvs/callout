@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Location from './Location';
-import BSNav from './BSNav';
+import BSNav from './BSNav'
+import { Row } from 'react-bootstrap'
 import SubmitButton from './SubmitButton'
 import './geo';
+import CalloutThumbs from './CalloutThumbs'
+
 export default class Home extends Component {
 
 	constructor(props){
@@ -16,6 +19,7 @@ export default class Home extends Component {
 		      key: "Taiwan",
 		      defaultAnimation: 2,
 	    	}],
+	    	callouts: [], // empty to start
 	  	}
 		this.render = this.render.bind(this);
 	}
@@ -53,6 +57,7 @@ export default class Home extends Component {
 	    	<BSNav/>
 		    <Location value={this.state.markers}/>
 		    <SubmitButton/>
+		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
 
     );
