@@ -1,0 +1,22 @@
+{
+  "name": "callout",
+  "version": "1.0.0",
+  "description": "UCSC Hackathon Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klvs/callout.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/klvs/callout/issues"
+  },
+  "homepage": "https://github.com/klvs/callout#readme",
+  "dependencies": {
+    "strongloop": "^6.0.0"
+  }
+}
