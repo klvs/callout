@@ -14,7 +14,11 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+        'Promise': 'imports?this=>global!exports?global.Promise!es6-promise',
+        'fetch': 'exports?self.fetch!whatwg-fetch'
+    })
   ],
   module: {
     loaders: [{
