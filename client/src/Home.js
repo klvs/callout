@@ -23,6 +23,7 @@ export default class Home extends Component {
 	    	callouts: [], // empty to start
 	  	}
 		this.render = this.render.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	componentDidMount() {
 		// console.log(navigator.location.getCurrentPosition());
@@ -60,12 +61,36 @@ export default class Home extends Component {
 		}))
 	}
 
+	handleSubmit(item) {
+		var submission = {
+			geo: this.state.markers[0].position,
+			url: item.data_uri,
+			desc: {
+				title: item.title,
+				desc: item.desc
+			}
+		}
+		console.log(submission);
+		// fetch('SUBMIT URL', {
+		// 	method: 'post',
+		// 	headers: {
+		// 		'Accept': 'application/json',
+		// 		'Content-Type': 'application/json'
+		// 	},
+		// 	body: JSON.stringify(submission)
+		// }).then(res=> {
+		// 	console.log("submit success")
+		// }).catch(err=> {
+		// 	console.log(err)
+		// })
+	}
+
   render() {
     return (
 	    	<div className="container">
 	    	<BSNav/>
 		    <Location value={this.state.markers}/>
-		    <SubmitButton/>
+		    <SubmitButton submitHandler={this.handleSubmit}/>
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
 

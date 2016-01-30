@@ -56,7 +56,18 @@ export default class SubmitButton extends Component {
 		if (!title || !desc || !data_uri) {
 			return;
 		}
-		console.log("ready to submit")
+
+		this.props.submitHandler({
+			title: title,
+			desc: desc,
+			data_uri: data_uri
+		});
+		this.setState({
+			title: '',
+			desc: '',
+			data_uri: ''
+		});
+		this.close();
 	}
 
 	render() {
