@@ -1,0 +1,27 @@
+{
+  "name": "callout",
+  "plural": "callouts",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "geo": {
+      "type": "object",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "object",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
