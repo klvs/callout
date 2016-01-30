@@ -3,6 +3,7 @@ import Location from './Location';
 import BSNav from './BSNav'
 import { Row } from 'react-bootstrap'
 import './geo';
+import CalloutThumbs from './CalloutThumbs'
 
 export default class Home extends Component {
 
