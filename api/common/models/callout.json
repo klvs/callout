@@ -22,7 +22,11 @@
     "desc": {
       "type": "object",
       "required": true
-    }
+  	},
+	"vote": {
+	  "type": "number",
+	  "required": true
+  	}
   },
   "validations": [],
   "relations": {},
