@@ -1,5 +1,6 @@
 var AWS = require('aws-sdk')
 var shortid = require('shortid')
+const fileType = require('file-type')
 
 var s3url = 'https://s3-us-west-1.amazonaws.com/callout-imgs/'
 
@@ -10,10 +11,11 @@ module.exports = function(Callout) {
 			data = ctx.instance;
 		else
 			data = ctx.data;
-		var base64Str = data.url; 
+		var base64Str = data.url;
 		var image = new Buffer(base64Str, 'base64');
 		var imageId = shortid.generate();
-		var key = imageId + '.jpeg';
+		var mime = fileType(image) || {'ext': 'jpg'};
+		var key = imageId + '.' + mime.ext;
 		data.url = s3url + key;
 		var s3 = new AWS.S3();
 		s3.putObject({
