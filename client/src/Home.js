@@ -5,7 +5,7 @@ import { Row } from 'react-bootstrap'
 import SubmitButton from './SubmitButton'
 import './geo';
 import CalloutThumbs from './CalloutThumbs'
-import * as constants from './constants'
+import * as constants from './constants';
 
 export default class Home extends Component {
 
@@ -63,7 +63,10 @@ export default class Home extends Component {
 
 	handleSubmit(item) {
 		var submission = {
-			geo: this.state.markers[0].position,
+			geo: {
+				lat: this.state.markers[0].position.lat,
+				lng: this.state.markers[0].position.lng
+			},
 			url: item.data_uri,
 			desc: {
 				title: item.title,
@@ -71,18 +74,18 @@ export default class Home extends Component {
 			}
 		}
 		console.log(submission);
-		// fetch('SUBMIT URL', {
-		// 	method: 'post',
-		// 	headers: {
-		// 		'Accept': 'application/json',
-		// 		'Content-Type': 'application/json'
-		// 	},
-		// 	body: JSON.stringify(submission)
-		// }).then(res=> {
-		// 	console.log("submit success")
-		// }).catch(err=> {
-		// 	console.log(err)
-		// })
+		fetch(constants.API_ROOT + 'callouts', {
+			method: 'post',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(submission)
+		}).then(res=> {
+			console.log("submit success")
+		}).catch(err=> {
+			console.log(err)
+		})
 	}
 
   render() {
