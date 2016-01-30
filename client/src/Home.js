@@ -58,7 +58,7 @@ export default class Home extends Component {
 	}
 
 	getCallouts() {
-	fetch(constants.API_ROOT + 'callouts?filter[order]=desc').then((request)=>{
+	fetch(constants.API_ROOT + 'callouts?filter[order]=time desc').then((request)=>{
 			return request.json()
 		}).then((response=>{
 			console.log(response);
