@@ -39,13 +39,15 @@ export default class SubmitButton extends Component {
 	handleFile(e) {
 		var reader = new FileReader();
 		var file = e.target.files[0];
+		console.log(file);
 		var _that = this;
 		reader.onload = function(upload){
 			_that.setState({
-				data_uri: upload.target.result
+				data_uri: btoa(upload.target.result)
 			});
+			console.log(btoa(upload.target.result))
 		}
-		reader.readAsDataURL(file);
+		reader.readAsBinaryString(file);
 	}
 
 	handleSubmit(e) {
@@ -56,7 +58,18 @@ export default class SubmitButton extends Component {
 		if (!title || !desc || !data_uri) {
 			return;
 		}
-		console.log("ready to submit")
+
+		this.props.submitHandler({
+			title: title,
+			desc: desc,
+			data_uri: data_uri
+		});
+		this.setState({
+			title: '',
+			desc: '',
+			data_uri: ''
+		});
+		this.close();
 	}
 
 	render() {

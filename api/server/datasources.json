@@ -4,10 +4,8 @@
     "connector": "memory",
     "file": "db.json"
   },
-  "s3": {
-  	  "connector": "loopback-component-storage",
-  	  "name": "s3"
-
+  "mongo": {
+    "name": "mongo",
+    "connector": "mongodb"
   }
-
 }

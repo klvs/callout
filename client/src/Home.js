@@ -5,7 +5,7 @@ import { Row } from 'react-bootstrap'
 import SubmitButton from './SubmitButton'
 import './geo';
 import CalloutThumbs from './CalloutThumbs'
-import * as constants from './constants'
+import * as constants from './constants';
 
 export default class Home extends Component {
 
@@ -23,6 +23,8 @@ export default class Home extends Component {
 	    	callouts: [], // empty to start
 	  	}
 		this.render = this.render.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getCallouts = this.getCallouts.bind(this);
 	}
 	componentDidMount() {
 		// console.log(navigator.location.getCurrentPosition());
@@ -52,12 +54,45 @@ export default class Home extends Component {
 		})
 
 		// get the data
-		fetch(constants.API_ROOT + 'callouts').then((request)=>{
+		this.getCallouts();
+	}
+
+	getCallouts() {
+	fetch(constants.API_ROOT + 'callouts?filter[order]=time desc').then((request)=>{
 			return request.json()
 		}).then((response=>{
 			console.log(response);
 			this.setState({callouts: response})
-		}))
+		}))		
+	}
+
+	handleSubmit(item) {
+		var submission = {
+			geo: {
+				lat: this.state.markers[0].position.lat,
+				lng: this.state.markers[0].position.lng
+			},
+			url: item.data_uri,
+			desc: {
+				title: item.title,
+				desc: item.desc
+			}
+		}
+		console.log(submission);
+		fetch(constants.API_ROOT + 'callouts', {
+			method: 'post',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(submission)
+		}).then(res=> {
+			console.log("submit success")
+			this.getCallouts();
+		}).catch(err=> {
+			console.log(err)
+		});
+		
 	}
 
   render() {
@@ -65,10 +100,9 @@ export default class Home extends Component {
 	    	<div className="container">
 	    	<BSNav/>
 		    <Location value={this.state.markers}/>
-		    <SubmitButton/>
+		    <SubmitButton submitHandler={this.handleSubmit}/>
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
-
     );
   }
 }
