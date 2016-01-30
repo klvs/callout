@@ -20,11 +20,11 @@ module.exports = function(Callout) {
 		data.url = s3url + key;
 		var s3 = new AWS.S3();
 		s3.putObject({
-			Bucket: bucket,
-			Key: key,
-			ACL: 'public-read',
-			ContentType: mimeFromBuffer.mime;
-			Body: image
+			"Bucket": bucket,
+			"Key": key,
+			"ACL": 'public-read',
+			"Content-Type": mimeFromBuffer.mime,
+			"Body": image
 		}, function(err) {
 			if(err)
 				console.log(err);
