@@ -39,5 +39,9 @@
   "Image": {
     "dataSource": "s3",
     "public": true
+  },
+  "Comment": {
+    "dataSource": "mongo",
+    "public": true
   }
 }

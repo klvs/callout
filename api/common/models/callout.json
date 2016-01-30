@@ -22,14 +22,16 @@
     "desc": {
       "type": "object",
       "required": true
-  	},
-	"vote": {
-	  "type": "number",
-	  "required": true
-  	}
+    }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "comments": {
+      "type": "hasMany",
+      "model": "Comment",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
