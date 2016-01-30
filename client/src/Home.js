@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Location from './Location';
 import BSNav from './BSNav'
 import { Row } from 'react-bootstrap'
+import './geo';
 
 export default class Home extends Component {
 
@@ -22,7 +23,7 @@ export default class Home extends Component {
 	}
 	componentDidMount() {
 		// console.log(navigator.location.getCurrentPosition());
-		navigator.geolocation.getCurrentPosition((position)=>{
+		navigator.geolocation.getAccurateCurrentPosition(position=> {
 			this.setState({				
 				markers: [{
 			      position: {
@@ -33,7 +34,19 @@ export default class Home extends Component {
 			      defaultAnimation: 2,
 		    	}],
 	  		})
-		})
+		}, err=>{console.log(err)},
+		intermediatePosition=>{
+			this.setState({				
+				markers: [{
+			      position: {
+			        lat: intermediatePosition.coords.latitude,
+			        lng: intermediatePosition.coords.longitude,
+			      },
+			      key: "You",
+			      defaultAnimation: 2,
+		    	}],
+	  		})
+		})		
 	}
 
   render() {
