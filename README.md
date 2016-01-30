@@ -14,11 +14,11 @@
 ## Team Members
 
 * Frontend
-  * Alex Roman
-  * Eric Lanini
+  * Alex Roman ([@klvs](https://github.com/klvs))
+  * Eric Lanini ([@elanini](https://github.com/elanini))
 * Backend
-  * Kyle Salter
-  * Weihao Chen
+  * Kyle Salter ([@terminull](https://github.com/terminull))
+  * Weihao Chen ([@zllovesuki](https://github.com/zllovesuki))
 
 ## Technologies
 
