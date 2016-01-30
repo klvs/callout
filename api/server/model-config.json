@@ -40,7 +40,7 @@
     "dataSource": "s3",
     "public": true
   },
-  "Comment": {
+  "comment": {
     "dataSource": "mongo",
     "public": true
   }

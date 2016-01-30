@@ -28,7 +28,7 @@
   "relations": {
     "comments": {
       "type": "hasMany",
-      "model": "Comment",
+      "model": "comment",
       "foreignKey": ""
     }
   },

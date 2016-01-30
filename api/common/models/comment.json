@@ -1,6 +1,6 @@
 {
-  "name": "Comment",
-  "plural": "Comments",
+  "name": "comment",
+  "plural": "comments",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
