@@ -4,6 +4,7 @@ import BSNav from './BSNav'
 import { Row } from 'react-bootstrap'
 import './geo';
 import CalloutThumbs from './CalloutThumbs'
+import * as constants from './constants'
 
 export default class Home extends Component {
 
@@ -47,7 +48,15 @@ export default class Home extends Component {
 			      defaultAnimation: 2,
 		    	}],
 	  		})
-		})		
+		})
+
+		// get the data
+		fetch(constants.API_ROOT + 'callouts').then((request)=>{
+			return request.json()
+		}).then((response=>{
+			console.log(response);
+			this.setState({callouts: response})
+		}))
 	}
 
   render() {
