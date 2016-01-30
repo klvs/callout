@@ -24,6 +24,7 @@ export default class Home extends Component {
 	  	}
 		this.render = this.render.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getCallouts = this.getCallouts.bind(this);
 	}
 	componentDidMount() {
 		// console.log(navigator.location.getCurrentPosition());
@@ -53,12 +54,16 @@ export default class Home extends Component {
 		})
 
 		// get the data
-		fetch(constants.API_ROOT + 'callouts').then((request)=>{
+		this.getCallouts();
+	}
+
+	getCallouts() {
+	fetch(constants.API_ROOT + 'callouts?filter[order]=desc').then((request)=>{
 			return request.json()
 		}).then((response=>{
 			console.log(response);
 			this.setState({callouts: response})
-		}))
+		}))		
 	}
 
 	handleSubmit(item) {
@@ -83,9 +88,11 @@ export default class Home extends Component {
 			body: JSON.stringify(submission)
 		}).then(res=> {
 			console.log("submit success")
+			this.getCallouts();
 		}).catch(err=> {
 			console.log(err)
-		})
+		});
+		
 	}
 
   render() {
@@ -96,7 +103,6 @@ export default class Home extends Component {
 		    <SubmitButton submitHandler={this.handleSubmit}/>
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
-
     );
   }
 }
