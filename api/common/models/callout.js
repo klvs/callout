@@ -18,6 +18,7 @@ module.exports = function(Callout) {
 		var mimeFromBuffer = fileType(image) || {'ext': 'jpg', 'mime': 'image/jpeg'};
 		var key = imageId + '.' + mimeFromBuffer.ext;
 		data.url = s3url + key;
+		data.time = new Date();
 		var s3 = new AWS.S3();
 		s3.putObject({
 			"Bucket": bucket,
