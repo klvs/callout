@@ -1,0 +1,2 @@
+export amazonKeyId="testKeyId"
+export amazonSecretKey="testSecretKey"
