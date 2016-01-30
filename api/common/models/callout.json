@@ -22,6 +22,10 @@
     "desc": {
       "type": "object",
       "required": true
+    },
+    "voteCount": {
+    	"type": "number",
+    	"default": 0
     }
   },
   "validations": [],
