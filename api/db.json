@@ -5,7 +5,7 @@
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "callout": 39
+    "callout": 40
   },
   "models": {
     "User": {},
@@ -51,7 +51,8 @@
       "35": "{\"geo\":{},\"url\":\"https://s3-us-west-1.amazonaws.com/callout-imgs/NyCxrUrYe.jpg\",\"desc\":{},\"id\":35}",
       "36": "{\"geo\":{},\"url\":\"https://s3-us-west-1.amazonaws.com/callout-imgs/EJi7SUrtx.jpg\",\"desc\":{},\"id\":36}",
       "37": "{\"geo\":{},\"url\":\"https://s3-us-west-1.amazonaws.com/callout-imgs/4JTiSUSKe.png\",\"desc\":{},\"id\":37}",
-      "38": "{\"geo\":{},\"url\":\"https://callout-imgs.s3.amazonaws.com/NkM088BFx.png\",\"desc\":{},\"id\":38}"
+      "38": "{\"geo\":{},\"url\":\"https://callout-imgs.s3.amazonaws.com/NkM088BFx.png\",\"desc\":{},\"id\":38}",
+      "39": "{\"geo\":{},\"url\":\"https://callout-imgs.s3.amazonaws.com/VkDIYLrKe.png\",\"desc\":{},\"id\":39}"
     }
   }
 }
