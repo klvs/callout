@@ -1,3 +1,3 @@
-module.exports = function(Image) {
+module.exports = function(image) {
 
 };
