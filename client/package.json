@@ -43,6 +43,7 @@
     "history": "^1.17.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-google-maps": "^4.7.2",
     "react-router": "^1.0.3"
   }
 }

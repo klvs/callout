@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Location from './Location';
 
 export default class Home extends Component {
 
@@ -35,8 +36,7 @@ export default class Home extends Component {
   render() {
     return (
     	<div>
-	    	<h1>{this.state.markers[0].position.lat}</h1>
-	    	<h1>{this.state.markers[0].position.lng}</h1>
+	    	<Location value={this.state.markers}/>
     	</div>
     );
   }
