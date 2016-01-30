@@ -5,7 +5,7 @@ export default class CalloutThumb extends Component {
   render() {
     return (
       <Col xs={12} sm={12} md={6} lg={4}>
-      	<Image src={this.props.data.url} rounded/>
+      	<Image className="img-responsive" src={this.props.data.url} rounded/>
       </Col>
     );
   }
