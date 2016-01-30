@@ -35,12 +35,10 @@ export default class Home extends Component {
 
   render() {
     return (
-    	<div>
-	    	<BSNav/>
 	    	<div className="container">
+	    	<BSNav/>
 		    	<Location value={this.state.markers}/>
 	    	</div>
-    	</div>
 
     );
   }
