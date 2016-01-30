@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Location from './Location';
 import BSNav from './BSNav';
+import SubmitButton from './SubmitButton'
 import './geo';
 export default class Home extends Component {
 
@@ -50,7 +51,8 @@ export default class Home extends Component {
     return (
 	    	<div className="container">
 	    	<BSNav/>
-		    	<Location value={this.state.markers}/>
+		    <Location value={this.state.markers}/>
+		    <SubmitButton/>
 	    	</div>
 
     );
