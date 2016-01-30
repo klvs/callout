@@ -1,11 +1,10 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory",
-    "file": "db.json"
-  },
   "mongo": {
     "name": "mongo",
     "connector": "mongodb"
+  },
+  "s3": {
+    "name": "s3",
+    "connector": "loopback-component-storage"
   }
 }
