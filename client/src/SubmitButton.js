@@ -39,13 +39,15 @@ export default class SubmitButton extends Component {
 	handleFile(e) {
 		var reader = new FileReader();
 		var file = e.target.files[0];
+		console.log(file);
 		var _that = this;
 		reader.onload = function(upload){
 			_that.setState({
-				data_uri: upload.target.result
+				data_uri: btoa(upload.target.result)
 			});
+			console.log(btoa(upload.target.result))
 		}
-		reader.readAsDataURL(file);
+		reader.readAsBinaryString(file);
 	}
 
 	handleSubmit(e) {
