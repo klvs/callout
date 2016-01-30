@@ -36,7 +36,7 @@
     "dataSource": "mongo",
     "public": true
   },
-  "Image": {
+  "image": {
     "dataSource": "s3",
     "public": true
   },
