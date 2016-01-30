@@ -2,7 +2,8 @@ var AWS = require('aws-sdk')
 var shortid = require('shortid')
 const fileType = require('file-type')
 
-var s3url = 'https://s3-us-west-1.amazonaws.com/callout-imgs/'
+var bucket = process.env.AWS_BUCKET;
+var s3url = 'https://' + bucket + '.s3.amazonaws.com/'
 
 module.exports = function(Callout) {
 	Callout.observe('before save', function uploadToS3(ctx, next) {
@@ -19,7 +20,7 @@ module.exports = function(Callout) {
 		data.url = s3url + key;
 		var s3 = new AWS.S3();
 		s3.putObject({
-			Bucket: 'callout-imgs',
+			Bucket: bucket,
 			Key: key,
 			ACL: 'public-read',
 			Body: image
