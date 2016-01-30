@@ -11,7 +11,6 @@ export default class Location extends Component {
         <SimpleMap
           markers={this.props.value}
         />
-        <input type="file" name="photo" accept="image/*" capture="camera"/>
       </div>
     );
   }

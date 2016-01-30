@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Location from './Location';
 import BSNav from './BSNav'
 import { Row } from 'react-bootstrap'
+import SubmitButton from './SubmitButton'
 import './geo';
 import CalloutThumbs from './CalloutThumbs'
 import * as constants from './constants'
@@ -64,6 +65,7 @@ export default class Home extends Component {
 	    	<div className="container">
 	    	<BSNav/>
 		    <Location value={this.state.markers}/>
+		    <SubmitButton/>
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
 
