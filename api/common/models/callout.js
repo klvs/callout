@@ -60,7 +60,7 @@ module.exports = function(Callout) {
 					if(saveErr)
 						cb(saveErr, { voteCount: callout.voteCount });
 					else
-						cb(null { voteCount: callout.voteCount });
+						cb(null, { voteCount: callout.voteCount });
 				});
 			}
 		});
