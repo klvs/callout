@@ -4,10 +4,6 @@ import CalloutThumb from './CalloutThumb'
 import { Link } from 'react-router'
 import * as constants from './constants';
 
-const styles = {
-	"max-width": "99%"
-}
-
 export default class CalloutThumbs extends Component {
 	constructor(props) {
 		super(props);
@@ -37,7 +33,7 @@ export default class CalloutThumbs extends Component {
 
   render() {
     return (
-    	<div style={styles}>
+    	<div>
       <Row>
         {this.state.thumbs.map((datum)=>{
          return <Link key={datum.id} to={`/callouts/${datum.id}`}> <CalloutThumb data={datum}/> </Link>
