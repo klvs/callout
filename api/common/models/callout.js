@@ -30,17 +30,17 @@ module.exports = function(Callout) {
 	function applyVote(calloutId, value, cb) {
 		Callout.findById(calloutId, function(err, callout) {
 			if(err)
-				cb(err, 0);
+				cb({ err: err, voteCount: 0});
 			else {
 				callout.voteCount += value;
-				callout.save(function(err, callout) {
-					if(err)
-						cb(err, callout.voteCount);
+				callout.save(function(saveErr, callout) {
+					if(saveErr)
+						cb({ err: saveErr, voteCount: callout.voteCount });
 					else {
-						if(callout.voteCount >= calloutVoteThreshold && callout.posted)
+						if(callout.voteCount >= calloutVoteThreshold && !callout.posted)
 							postToTwitter(callout, cb);
 						else
-							cb(null, callout.voteCount);
+							cb({ err: null, voteCount: callout.voteCount });
 					}
 				});
 			}
@@ -52,13 +52,13 @@ module.exports = function(Callout) {
 		callout.posted = true;
 		client.post('statuses/update', status, function(err, tweet, res) {
 			if(err)
-				cb(err, callout.voteCount);
+				cb({ err: err, voteCount: callout.voteCount });
 			else {
 				callout.save(function(saveErr, callout) {
 					if(saveErr)
-						cb(saveErr, callout.voteCount);
+						cb({ err: saveErr, voteCount: callout.voteCount });
 					else
-						cb(null, callout.voteCount);
+						cb({ err: null, voteCount: callout.voteCount });
 				});
 			}
 		});
@@ -69,7 +69,7 @@ module.exports = function(Callout) {
 		{
 			http: { path: '/upvote', verb: 'post' },
 			accepts: { arg: 'id', type: 'string', required: true },
-			returns: [ { arg: 'err', type: 'string' }, { arg: 'voteCount', type: 'number' } ]	
+			returns: { type: 'object', root: true }
 		}
 	);
 	Callout.remoteMethod(
@@ -77,7 +77,7 @@ module.exports = function(Callout) {
 		{
 			http: { path: '/downvote', verb: 'post' },
 			accepts: { arg: 'id', type: 'string', required: true },
-			returns: [ { arg: 'err', type: 'string' }, { arg: 'voteCount', type: 'number' } ]	
+			returns: { type: 'object', root: true }
 		}
 	);
 };
