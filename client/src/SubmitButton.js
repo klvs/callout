@@ -63,7 +63,7 @@ export default class SubmitButton extends Component {
 				canvas.height = img.naturalHeight;
 				var ctx = canvas.getContext('2d');
 				ctx.drawImage(img, 0, 0);
-				var modifiedDataURL = canvas.toDataURL(file.type, 0.5);
+				var modifiedDataURL = canvas.toDataURL(file.type, 0.3);
 				var modifiedBase64 = modifiedDataURL.split(',')[1];
 
 				_that.setState({
