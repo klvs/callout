@@ -8,7 +8,7 @@ export default class CalloutThumbs extends Component {
     return (
       <Row>
         {this.props.thumbs.map((datum)=>{
-         return <Link to={`/callouts/${datum.id}`}> <CalloutThumb key={datum.id} data={datum}/> </Link>
+         return <Link key={datum.id} to={`/callouts/${datum.id}`}> <CalloutThumb data={datum}/> </Link>
         })}
       </Row>
     );
