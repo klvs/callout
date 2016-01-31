@@ -3,6 +3,36 @@ import * as constants from './constants';
 import { Row, Col, Image, Button } from 'react-bootstrap'
 import moment from 'moment'
 
+const containerLg = {
+	marginRight: 'auto',
+	marginLeft: 'auto',
+	paddingLeft: '10%',
+	paddingRight: '10%',
+}
+
+const containerInner = {
+	background: '#3e3f3a',
+	marginTop: '30px',
+	marginBottom: '30px',
+	borderRadius: '10px'
+}
+
+const titleText = {
+	color:'#fff',
+	marginLeft: '10px',
+}
+
+const subtitle = {
+	marginLeft: '10px'
+}
+
+const imgContainer = {
+	marginRight: 'auto',
+	marginLeft: 'auto',
+	paddingLeft: '10%',
+	paddingRight: '10%',
+}
+
 export default class SingleCallout extends Component {
 	constructor(props){
 		super(props)
@@ -71,42 +101,50 @@ export default class SingleCallout extends Component {
 		})
 
 	}
+
+
   render() {
     return (
-    	<div className="container">
-	    	<Row>
-	    		<Col xs={12} className="text-center">
-			      <h1>
-			      	{this.state.callout.desc.title}
-			      </h1>
-			      	<small>{moment(this.state.callout.time).fromNow()}</small>
-	      	</Col>
-	    	</Row>
-	    	<Row>
-	    		<Col xs={12} className="text-center"> <Button onClick={this.upvoteCallout}>UP</Button></Col>
-	    		<Col xs={12} className="text-center">
-			      <h1>{this.state.voteCount}</h1>
-	      		</Col>
-	      		<Col xs={12}className="text-center"> <Button onClick={this.downvoteCallout}>DOWN</Button></Col>
-	    	</Row>
+    	<div style={containerLg}>
+    		<div  style={containerInner}>
+		    	<Row>
+		    		<Col xs={12}>
+				      	<h3 style={titleText}>{this.state.callout.desc.title}
+				      		<small style={subtitle}>{moment(this.state.callout.time).fromNow()}</small>
+				      	</h3>
+				      	<p style={{color:'white', paddingLeft:'10px'}}>{this.state.voteCount}</p>
+		      	</Col>
+		    	</Row>
+		    	<Row>
 
-	    	<Row>
-	    		<Col xs={12} className="text-center">
-			      <Image className="img-responsive" src={this.state.callout.url}/>
-	      	</Col>
-	    	</Row>
-	    	<Row>
-	    		<Col xs={6} className="">
-			      <div className="text-mute">
-			      	{this.state.callout.desc.desc}
-			      </div>
-	      	</Col>
-	    		<Col xs={6} className="">
-			      <div className="text-mute">
-			      	{moment(this.state.callout.time).format('MM Do YYYY')}
-			      </div>
-	      	</Col>
-	    	</Row>
+		    		<Col xs={12} className="text-center"> 
+			    		<Button onClick={this.upvoteCallout}>
+			    			<i className="fa fa-3x fa-thumbs-up"/>
+			    		</Button>
+			    		<Button onClick={this.downvoteCallout}>
+			    			<i className="fa fa-3x fa-thumbs-down"/>
+			    		</Button>
+		    		</Col>
+		    	</Row>
+
+		    	<Row>
+		    		<Col xs={12}  className="text-center">
+				      <Image style={imgContainer} className="img-responsive" src={this.state.callout.url}/>
+		      	</Col>
+		    	</Row>
+		    	<Row>
+		    		<Col xs={6} className="">
+				      <div className="text-mute">
+				      	{this.state.callout.desc.desc}
+				      </div>
+		      	</Col>
+		    		<Col xs={6} className="">
+				      <div className="text-mute">
+				      	{moment(this.state.callout.time).format('MM Do YYYY')}
+				      </div>
+		      	</Col>
+		    	</Row>
+    		</div>
     	</div>
     );
   }
