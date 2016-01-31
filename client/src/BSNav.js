@@ -1,5 +1,30 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, NavDropdown, Nav, MenuItem } from 'react-bootstrap'
+import SocialButtons from './SocialButtons'
+
+import {
+  ShareButtons,
+  ShareCounts,
+  generateShareIcon
+} from 'react-share';
+
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton
+} = ShareButtons;
+
+const {
+  FacebookShareCount,
+  GooglePlusShareCount,
+  LinkedinShareCount
+} = ShareCounts;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const GooglePlusIcon = generateShareIcon('google');
+const LinkedinIcon = generateShareIcon('linkedin');
 
 const logo = {
   color: '#93c54b'
@@ -18,26 +43,30 @@ export default class BSNav extends Component {
       <Navbar style={nav}>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Callout <span style={logo}>{'{your city}'}</span></a>
+            <a href="/#!/">Callout <span style={logo}>{'{your city}'}</span></a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">Link</NavItem>
-            <NavItem eventKey={2} href="#">Link</NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="#">Link Right</NavItem>
-            <NavItem eventKey={2} href="#">Link Right</NavItem>
-          </Nav>
+		  	<NavItem eventKey={1} href="#">Share this site to: </NavItem>
+            <NavItem eventKey={2} href="#"><FacebookShareButton
+				url = "callout.city"
+				title = "CallOut"
+				className = "FacebookShareButton">
+				<FacebookIcon
+					size={24}
+					round={true} />
+			</FacebookShareButton></NavItem>
+		  	<NavItem eventKey={3} href="#"><TwitterShareButton
+			  url = "callout.city"
+			  title = "CallOut"
+			  className = "TwitterShareButton">
+			  <TwitterIcon
+				  size={24}
+				  round={true} />
+		  	</TwitterShareButton></NavItem>
+		  </Nav>
         </Navbar.Collapse>
       </Navbar>
     );

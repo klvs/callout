@@ -35,14 +35,14 @@ export default class CalloutThumbs extends Component {
 	}
 
 	getCallouts() {
-		fetch(constants.API_ROOT + 'callouts?filter[order]=time desc&filter[limit]=5&filter[skip]=' + this.state.skip ).then((request)=>{
+		fetch(constants.API_ROOT + 'callouts?filter[order]=time desc&filter[limit]=6&filter[skip]=' + this.state.skip ).then((request)=>{
 				return request.json()
 			}).then((response=>{
 				this.setState({
 					thumbs: this.state.thumbs.concat(response),
 			})
 		}))
-		this.setState({skip: this.state.skip+5})
+		this.setState({skip: this.state.skip+6})
 	}
 
 
