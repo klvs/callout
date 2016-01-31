@@ -32,7 +32,7 @@ module.exports = function(Callout) {
 	Callout.remoteMethod(
 		'upvote',
 		{
-			http: { path: '/:id/upvote', verb: 'post' },
+			http: { path: '/upvote', verb: 'post' },
 			accepts: { ard: 'id', type: 'string', required: true },
 			returns: { arg: 'voteCount', type: 'number' }	
 		}
@@ -40,7 +40,7 @@ module.exports = function(Callout) {
 	Callout.remoteMethod(
 		'downvote',
 		{
-			http: { path: '/:id/downvote', verb: 'post' },
+			http: { path: '/downvote', verb: 'post' },
 			accepts: { ard: 'id', type: 'string', required: true },
 			returns: [ { arg: 'err', type: 'string' }, { arg: 'voteCount', type: 'number' } ]	
 		}
