@@ -118,7 +118,7 @@ export default class SubmitButton extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<Image src={this.state.data_uri} responsive/>
-					<form className="SubmitIssueForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
+					<form style={styles} className="SubmitIssueForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
 					<Input type="text" onChange={this.handleTitleChange} label="Title" placeholder="Enter title" value={this.state.title}/>
 					<Input type="text" onChange={this.handleDescriptionChange} label="Description" placeholder="Enter description" value={this.state.desc}/>
 					<ButtonInput type="submit" value="Submit" disabled={this.state.uploading}  />
