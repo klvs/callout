@@ -8,6 +8,10 @@ import * as constants from './constants';
 import * as callout from './CalloutController'
 import SocialButtons from './SocialButtons'
 
+const mapStyles = {
+	"min-height": "50%"
+}
+
 export default class Home extends Component {
 
 	constructor(props){
@@ -31,7 +35,7 @@ export default class Home extends Component {
 	componentDidMount() {
 		// console.log(navigator.location.getCurrentPosition());
 		navigator.geolocation.getAccurateCurrentPosition(position=> {
-			this.setState({				
+			this.setState({
 				center: {
 			      position: {
 			        lat: position.coords.latitude,
@@ -43,7 +47,7 @@ export default class Home extends Component {
 	  		})
 		}, err=>{console.log(err)},
 		intermediatePosition=>{
-			this.setState({				
+			this.setState({
 				center: {
 			      position: {
 			        lat: intermediatePosition.coords.latitude,
@@ -66,7 +70,7 @@ export default class Home extends Component {
 				callouts: response,
 				markers: this.state.markers.concat(callout.transformToMarker(response))
 			})
-		}))		
+		}))
 	}
 
 	handleSubmit(item) {
@@ -94,15 +98,15 @@ export default class Home extends Component {
 		}).catch(err=> {
 			console.log(err)
 		});
-		
+
 	}
 
   render() {
     return (
 	    	<div>
-		    <Location center={this.state.center} value={this.state.markers}/>
+		    <Location style={mapStyles} center={this.state.center} value={this.state.markers}/>
 		    <SubmitButton submitHandler={this.handleSubmit}/>
-		    <SocialButtons url="callout.city" title="Callout"/>	
+		    <SocialButtons url="callout.city" title="Callout"/>
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
     );
