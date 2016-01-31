@@ -48,14 +48,14 @@ export default class CalloutThumbs extends Component {
 
   render() {
     return (
-    	<div class="clearfix">
-			<div class="clearfix">
-				<Row style={styles} class="clearfix">{this.state.thumbs.map((datum)=>{
+    	<div>
+			<div>
+				<Row style={styles}>{this.state.thumbs.map((datum)=>{
 					return <Link key={datum.id} to={`/callouts/${datum.id}`}> <CalloutThumb data={datum}/> </Link>
 				})}
 				</Row>
 			</div>
-			<div class="clearfix" style={loadMoreDisplayBlock}>
+			<div style={loadMoreDisplayBlock}>
 				<Button onClick={this.getCallouts} block>load more</Button>
 			</div>
 		</div>

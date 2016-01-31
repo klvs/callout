@@ -33,7 +33,7 @@ export default class CalloutThumb extends Component {
 
   render() {
     return (
-      <Col class="clearfix" style={colStyle} xs={4} sm={4} md={4} lg={4}>
+      <Col style={colStyle} xs={4} sm={4} md={4} lg={4}>
       	<h2 style={styles}>{this.props.data.desc.title}</h2>
       	<Image style={imgStyle} className="img-responsive" src={this.props.data.url} />
       </Col>

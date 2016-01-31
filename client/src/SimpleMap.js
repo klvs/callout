@@ -9,7 +9,7 @@ export default function SimpleMap (props) {
   } else {
     center = {lat: -25.363882, lng: 131.044922};
   }
-  console.log(history)
+
   return (
     <section>
       <GoogleMap containerProps={{
