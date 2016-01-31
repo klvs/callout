@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as constants from './constants';
 import { Row, Col, Image, Button } from 'react-bootstrap'
 import moment from 'moment'
+import CommentBox from './CommentBox'
 
 export default class SingleCallout extends Component {
 	constructor(props){
@@ -77,6 +78,7 @@ export default class SingleCallout extends Component {
 
 	}
   render() {
+  	console.log(this.state.callout.id)
     return (
     	<div className="container">
 	    	<Row>
@@ -112,6 +114,7 @@ export default class SingleCallout extends Component {
 			      </div>
 	      	</Col>
 	    	</Row>
+	    	<CommentBox calloutId={this.state.callout.id}/>
     	</div>
     );
   }
