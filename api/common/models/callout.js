@@ -52,7 +52,7 @@ module.exports = function(Callout) {
 		callout.posted = true;
 		client.post('statuses/update', status, function(err, tweet, res) {
 			if(err)
-				cb({ err: err, voteCount: callout.voteCount });
+				cb({ err: err, voteCount: callout.voteCount, status: status });
 			else {
 				callout.save(function(saveErr, callout) {
 					if(saveErr)
