@@ -1,8 +1,6 @@
 var shortid = require('shortid')
 const fileType = require('file-type')
 
-var calloutVoteThreshold = 50;
-
 module.exports = function(Callout) {
 	Callout.observe('before save', function uploadToS3(ctx, next) {
 		if (ctx.instance) // only change the time if this is a new callout
@@ -35,16 +33,16 @@ module.exports = function(Callout) {
 	Callout.remoteMethod(
 		'upvote',
 		{
-			http: { path: '/upvote', verb: 'post' },
-			accepts: { arg: 'id', type: 'string', required: true },
+			http: { path: '/:id/upvote', verb: 'post' },
+			accepts: { ard: 'id', type: 'string', required: true },
 			returns: { arg: 'voteCount', type: 'number' }	
 		}
 	);
 	Callout.remoteMethod(
 		'downvote',
 		{
-			http: { path: '/downvote', verb: 'post' },
-			accepts: { arg: 'id', type: 'string', required: true },
+			http: { path: '/:id/downvote', verb: 'post' },
+			accepts: { ard: 'id', type: 'string', required: true },
 			returns: [ { arg: 'err', type: 'string' }, { arg: 'voteCount', type: 'number' } ]	
 		}
 	);
