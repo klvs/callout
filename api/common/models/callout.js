@@ -1,35 +1,48 @@
-var AWS = require('aws-sdk')
 var shortid = require('shortid')
 const fileType = require('file-type')
 
-var bucket = process.env.AWS_BUCKET || '';
-var s3url = 'https://' + bucket + '.s3.amazonaws.com/'
-
 module.exports = function(Callout) {
 	Callout.observe('before save', function uploadToS3(ctx, next) {
-		var data;
-		if(ctx.instance)
-			data = ctx.instance;
-		else
-			data = ctx.data;
-		var base64Str = data.url;
-		var image = new Buffer(base64Str, 'base64');
-		var imageId = shortid.generate();
-		var mimeFromBuffer = fileType(image) || {'ext': 'jpg', 'mime': 'image/jpeg'};
-		var key = imageId + '.' + mimeFromBuffer.ext;
-		data.url = s3url + key;
-		data.time = new Date();
-		var s3 = new AWS.S3();
-		s3.putObject({
-			"Bucket": bucket,
-			"Key": key,
-			"ACL": 'public-read',
-			"ContentType": mimeFromBuffer.mime,
-			"Body": image
-		}, function(err) {
-			if(err)
-				console.log(err);
-			next();
-		});
+		if (ctx.instance) // only change the time if this is a new callout
+			ctx.instance.time = new Date();
+
+		next();
 	});
+	Callout.upvote = function(calloutId, cb) {
+		applyVote(calloutId, 1, cb)
+	};
+	Callout.downvote = function(calloutId, cb) {
+		applyVote(calloutId, -1, cb)
+	};
+	function applyVote(calloutId, value, cb) {
+		Callout.findById(calloutId, function(err, callout) {
+			if(err)
+				cb(err, 0);
+			else {
+				callout.voteCount += value;
+				callout.save(function(err, callout) {
+					if(err)
+						cb(err, value);
+					else
+						cb(null, value);
+				});
+			}
+		});
+	};
+	Callout.remoteMethod(
+		'upvote',
+		{
+			http: { path: '/:id/upvote', verb: 'post' },
+			accepts: { ard: 'id', type: 'string', required: true },
+			returns: { arg: 'voteCount', type: 'number' }	
+		}
+	);
+	Callout.remoteMethod(
+		'downvote',
+		{
+			http: { path: '/:id/downvote', verb: 'post' },
+			accepts: { ard: 'id', type: 'string', required: true },
+			returns: [ { arg: 'err', type: 'string' }, { arg: 'voteCount', type: 'number' } ]	
+		}
+	);
 };

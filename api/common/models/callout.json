@@ -7,10 +7,10 @@
     "validateUpsert": true
   },
   "properties": {
-	"time": {
-	  "type": "date",
-	  "require": false
-	},
+    "time": {
+      "type": "date",
+      "require": false
+    },
     "geo": {
       "type": "object",
       "required": true
@@ -22,10 +22,20 @@
     "desc": {
       "type": "object",
       "required": true
+    },
+    "voteCount": {
+    	"type": "number",
+    	"default": 0
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "comments": {
+      "type": "hasMany",
+      "model": "comment",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -35,5 +35,13 @@
   "callout": {
     "dataSource": "mongo",
     "public": true
+  },
+  "image": {
+    "dataSource": "s3",
+    "public": true
+  },
+  "comment": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
