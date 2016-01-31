@@ -20,7 +20,6 @@ module.exports = function(Callout) {
 				cb(err, 0);
 			else {
 				callout.voteCount += value;
-				if 
 				callout.save(function(err, callout) {
 					if(err)
 						cb(err, value);
