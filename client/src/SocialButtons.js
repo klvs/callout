@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 
 import {
   ShareButtons,
@@ -29,4 +29,4 @@ export default class SocialButtons extends Component {
 		)
 	}
 }
-
+*/
