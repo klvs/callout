@@ -32,17 +32,17 @@ module.exports = function(Callout) {
 	function applyVote(calloutId, value, cb) {
 		Callout.findById(calloutId, function(err, callout) {
 			if(err)
-				cb({ err: err, voteCount: 0});
+				cb(err {voteCount: 0});
 			else {
 				callout.voteCount += value;
 				callout.save(function(saveErr, callout) {
 					if(saveErr)
-						cb({ err: saveErr, voteCount: callout.voteCount });
+						cb(saveErr, {voteCount: callout.voteCount });
 					else {
 						if(callout.voteCount >= calloutVoteThreshold && !callout.posted)
 							postToTwitter(callout, cb);
 						else
-							cb({ err: null, voteCount: callout.voteCount });
+							cb(null, { voteCount: callout.voteCount });
 					}
 				});
 			}
@@ -54,13 +54,13 @@ module.exports = function(Callout) {
 		callout.posted = true;
 		client.post('statuses/update', status, function(err, tweet, res) {
 			if(err)
-				cb({ err: err, voteCount: callout.voteCount, status: status, keys: keys });
+				cb(err, { voteCount: callout.voteCount, status: status, keys: keys });
 			else {
 				callout.save(function(saveErr, callout) {
 					if(saveErr)
-						cb({ err: saveErr, voteCount: callout.voteCount });
+						cb(saveErr, { voteCount: callout.voteCount });
 					else
-						cb({ err: null, voteCount: callout.voteCount });
+						cb(null { voteCount: callout.voteCount });
 				});
 			}
 		});
