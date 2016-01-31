@@ -6,6 +6,7 @@ import './geo';
 import CalloutThumbs from './CalloutThumbs'
 import * as constants from './constants';
 import * as callout from './CalloutController'
+import SocialButtons from './SocialButtons'
 
 export default class Home extends Component {
 
@@ -101,6 +102,7 @@ export default class Home extends Component {
 	    	<div>
 		    <Location center={this.state.center} value={this.state.markers}/>
 		    <SubmitButton submitHandler={this.handleSubmit}/>
+		    <SocialButtons url="callout.city" title="Callout"/>	
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
     );

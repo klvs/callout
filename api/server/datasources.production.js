@@ -14,6 +14,7 @@ module.exports = {
 		"provider": "amazon",
 		"keyId": process.env.AWS_ACCESS_KEY_ID,
 		"key": process.env.AWS_SECRET_ACCESS_KEY,
-		"acl": "public-read"
+		"acl": "public-read",
+		"maxFileSize": 26214400
 	}
 }

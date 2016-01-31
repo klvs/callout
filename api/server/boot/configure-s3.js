@@ -13,7 +13,7 @@ module.exports = function(app) {
 
 			return newFileName;
 		}else{
-			throw "FileTypeError: only images are allowed;"
+			res.json("FileTypeError: only images are allowed;");
 		}
 	}
 }
