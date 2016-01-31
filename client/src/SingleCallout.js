@@ -47,7 +47,7 @@ const titleText = {
 const subtitle = {
 	marginLeft: '10px',
 	color: '#fff',
-	fontSize: '0.7em'
+	fontSize: '0.8em'
 }
 
 const imgContainer = {
@@ -129,16 +129,16 @@ export default class SingleCallout extends Component {
     return (
     	<div style={containerLg}>
     		<div style={containerInner}>
-		    	<Row style={{height: '50px', margin: '1em'}}>
+		    	<Row style={{height: '50px', marginTop: '1em'}}>
 		    		<Col xs={12}>
-				      	<h3 style={titleText}>{this.state.callout.desc.title}	</h3>
+				      	<h3 style={titleText}>{this.state.callout.desc.title}</h3>
 		      		</Col>
 				</Row>
-				<Row style={{height: '50px', padding: '0.5em', textAlign: 'center'}}>
+				<Row style={{height: '50px', marginBottom: '0.5em', paddingTop: '-0.5em', textAlign: 'center'}}>
 		    		<Col xs={12}>
-				      <span style={subtitle}>{moment(this.state.callout.time).fromNow()}</span>
+				      	<h3 style={subtitle}>{this.state.callout.desc.desc}</h3>
 		      		</Col>
-		    	</Row>
+				</Row>
 		    	<Row style={{height: '50px', margin: '1em', marginTop: '-1em'}}>
 		    		<Col xs={4} className="text-center">
 			    		<Button onClick={this.upvoteCallout} style={{float: 'right', height: '100%'}}>
@@ -160,7 +160,12 @@ export default class SingleCallout extends Component {
 				      <Image style={imgContainer} className="img-responsive" src={this.state.callout.url}/>
 		      		</Col>
 		    	</Row>
-				<Row style={{margin: '2em'}}>
+				<Row style={{height: '50px', padding: '0.5em', textAlign: 'center'}}>
+		    		<Col xs={12}>
+				      <span style={subtitle}>{moment(this.state.callout.time).format('MM/DD/YYYY HH:MM:SS')} - {moment(this.state.callout.time).fromNow()}</span>
+		      		</Col>
+		    	</Row>
+				<Row style={{padding: '2em'}}>
 				<Col xs={6} style={{color: '#fff'}}><span style={{float: 'right'}}>Share this Callout to: </span></Col>
 				<Col xs={3}><FacebookShareButton
 					url = {"http://callout.city/callouts/"+this.state.callout.id}
@@ -181,18 +186,6 @@ export default class SingleCallout extends Component {
 					  round={true} />
 				</TwitterShareButton></Col>
 				</Row>
-		    	<Row>
-		    		<Col xs={6} className="">
-				      <div className="text-mute">
-				      	{this.state.callout.desc.desc}
-				      </div>
-		      	</Col>
-		    		<Col xs={6} className="">
-				      <div className="text-mute">
-				      	{moment(this.state.callout.time).format('MM Do YYYY')}
-				      </div>
-		      	</Col>
-		    	</Row>
     		</div>
 	    	<CommentBox calloutId={this.props.params.id}/>
     	</div>
