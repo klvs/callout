@@ -72,7 +72,7 @@ export default class Home extends Component {
 				lat: this.state.markers[0].position.lat,
 				lng: this.state.markers[0].position.lng
 			},
-			url: item.data_uri,
+			url: item.imageUrl,
 			desc: {
 				title: item.title,
 				desc: item.desc
