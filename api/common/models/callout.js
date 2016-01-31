@@ -69,7 +69,7 @@ module.exports = function(Callout) {
 		{
 			http: { path: '/upvote', verb: 'post' },
 			accepts: { arg: 'id', type: 'string', required: true },
-			returns: { arg: 'voteCount', type: 'number' }	
+			returns: [ { arg: 'err', type: 'string' }, { arg: 'voteCount', type: 'number' } ]	
 		}
 	);
 	Callout.remoteMethod(
