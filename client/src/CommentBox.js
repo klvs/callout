@@ -10,7 +10,6 @@ export default class CommentBox extends Component {
 			calloutId:'',
 			data: []
 		}
-		this.componentDidMount = this.componentDidMount.bind(this)
 	}
 
 	componentWillReceiveProps(nextProps) {
