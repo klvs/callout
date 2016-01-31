@@ -19,11 +19,9 @@ export default class SingleCallout extends Component {
 		}
 		this.upvoteCallout = this.upvoteCallout.bind(this);
 		this.downvoteCallout = this.downvoteCallout.bind(this);
-		// this.render = this.render.bind(this)
 	}
 
 	upvoteCallout(e) {
-		//console.log(this.state.callout.desc.title)
 		fetch(constants.API_ROOT + 'callouts/upvote', {
 			method: 'post',
 			headers: {
@@ -65,13 +63,10 @@ export default class SingleCallout extends Component {
 		fetch(constants.API_ROOT + 'callouts/' + this.props.params.id).then((request)=>{
 				return request.json()
 			}).then((response=>{
-				console.log("response")
-				console.log(response)
 				this.setState({
 					callout: response,
 					voteCount:response.voteCount
 				})
-				//console.log(response.desc.title)
 			})).catch((error)=>{
 				console.warn(error)
 		})
