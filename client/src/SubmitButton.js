@@ -74,7 +74,6 @@ export default class SubmitButton extends Component {
 				_that.setState({
 					data_uri: modifiedDataURL
 				});
-				_that.open();
 
 				var byteString = atob(modifiedBase64);
 
@@ -86,6 +85,8 @@ export default class SubmitButton extends Component {
 				var blob = new Blob([ia], {type: file.type});
 
 				var modified = new File([blob], file.name, {type: file.type});
+
+				_that.open();
 
 				var formData = new FormData()
 				formData.append('image', modified)
@@ -107,49 +108,6 @@ export default class SubmitButton extends Component {
 				});
 
 			}
-
-			//var newImageData = ctx.toDataURL(file.type, 0.3);
-
-			//console.log(newImageData);
-
-			/*console.log(arrayBuffer);
-
-			var blob = new Blob([arrayBuffer], {type: file.type})
-
-			console.log(blob);
-
-			var modified = new File([blob], file.name, {type: file.type});
-
-			console.log(modified);
-
-			var modifiedReader = new FileReader();
-
-			modifiedReader.onload = function(img){
-				_that.setState({
-					data_uri: img.target.result
-				});
-				_that.open();
-			}
-			modifiedReader.readAsDataURL(modified);
-
-			var formData = new FormData()
-			formData.append('image', modified)
-			/*fetch(constants.API_ROOT + 'images/callout-imgs/upload', {
-				method: 'post',
-				body: formData
-			}).then(req=> {
-				return req.json()
-				//this.getCallouts();
-			}).then(res=> {
-				console.log(res);
-				_that.setState({
-					imageName: res.result.files.image[0].name,
-					imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
-					isUploading: false
-				})
-			}).catch(err=> {
-				console.log(err)
-			});*/
 		}
 		reader.readAsDataURL(file);
 	}
