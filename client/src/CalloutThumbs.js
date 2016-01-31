@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import * as constants from './constants';
 
 const styles = {
-	"max-width": "100%"
+	"max-width": "99%"
 }
 
 export default class CalloutThumbs extends Component {
