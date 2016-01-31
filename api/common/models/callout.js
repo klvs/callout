@@ -11,7 +11,7 @@ var keys = {
 
 var client = new Twitter(keys);
 var twitterParams = {screen_name: 'Callout_City'};
-var calloutVoteThreshold = 50;
+var calloutVoteThreshold = 10;
 
 module.exports = function(Callout) {
 	Callout.observe('before save', function uploadToS3(ctx, next) {
