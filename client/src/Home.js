@@ -33,7 +33,6 @@ export default class Home extends Component {
 		this.getCallouts = this.getCallouts.bind(this);
 	}
 	componentDidMount() {
-		// console.log(navigator.location.getCurrentPosition());
 		navigator.geolocation.getAccurateCurrentPosition(position=> {
 			this.setState({
 				center: {
