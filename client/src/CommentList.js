@@ -7,13 +7,12 @@ export default class CommentList extends Component {
 		super(props)
 	}
 
-
 	render() {
 		var header = ''
 		var comments = []
 		if (this.props.data) {
 			var comments = this.props.data.map((comment)=>{
-				return <Comment name={comment.name} comment={comment.text}/> 
+				return <Comment key={comment.id + 'new' + Math.random()} name={comment.name} comment={comment.text}/> 
 			})
 			header = "comments"
 		}
