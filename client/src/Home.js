@@ -12,6 +12,10 @@ const mapStyles = {
 	"min-height": "50%"
 }
 
+const marginStyles = {
+	"margin": "1em"
+}
+
 export default class Home extends Component {
 
 	constructor(props){
@@ -105,8 +109,7 @@ export default class Home extends Component {
     return (
 	    	<div>
 		    <Location style={mapStyles} center={this.state.center} value={this.state.markers}/>
-		    <SubmitButton submitHandler={this.handleSubmit}/>
-		    <SocialButtons url="callout.city" title="Callout"/>
+		    <SubmitButton style={marginStyles} submitHandler={this.handleSubmit}/>
 		    <CalloutThumbs geo={this.state.center.position}/>
 	    	</div>
     );
