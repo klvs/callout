@@ -3,7 +3,7 @@ import { Modal, Button, Input, ButtonInput, Image } from 'react-bootstrap'
 import * as constants from './constants';
 
 const styles = {
-	"padding-top": "1em"
+	"paddingTop": "1em"
 };
 
 const imgStyles = {
