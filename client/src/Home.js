@@ -102,7 +102,7 @@ export default class Home extends Component {
 	    	<div className="container">
 	    	<BSNav/>
 		    <Location center={this.state.center} value={this.state.markers}/>
-		    <SocialButtons url="callout.city" title="Callout your city"/>
+		    //<SocialButtons url="callout.city" title="Callout your city"/>
 		    <SubmitButton submitHandler={this.handleSubmit}/>
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
