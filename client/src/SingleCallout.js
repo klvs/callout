@@ -60,7 +60,6 @@ export default class SingleCallout extends Component {
 			},
 			body: JSON.stringify({id: this.state.callout.id})
 		}).then(res=> {
-			console.log("upvoted")
 		}).catch(err=> {
 			console.log(err)
 		});
@@ -78,7 +77,6 @@ export default class SingleCallout extends Component {
 			},
 			body: JSON.stringify({id: this.state.callout.id})
 		}).then(res=> {
-			console.log("downvoted")
 		}).catch(err=> {
 			console.log(err)
 		});
@@ -105,7 +103,6 @@ export default class SingleCallout extends Component {
 
 
   render() {
-  	console.log(this.state.callout.id)
     return (
     	<div style={containerLg}>
     		<div  style={containerInner}>
@@ -147,7 +144,7 @@ export default class SingleCallout extends Component {
 		      	</Col>
 		    	</Row>
     		</div>
-	    	<CommentBox calloutId={this.state.callout.id}/>
+	    	<CommentBox calloutId={this.props.params.id}/>
     	</div>
     );
   }
