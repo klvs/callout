@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as constants from './constants';
 import { Row, Col, Image, Button } from 'react-bootstrap'
 import moment from 'moment'
+import CommentBox from './CommentBox'
 
 const containerLg = {
 	marginRight: 'auto',
@@ -104,6 +105,7 @@ export default class SingleCallout extends Component {
 
 
   render() {
+  	console.log(this.state.callout.id)
     return (
     	<div style={containerLg}>
     		<div  style={containerInner}>
@@ -145,6 +147,7 @@ export default class SingleCallout extends Component {
 		      	</Col>
 		    	</Row>
     		</div>
+	    	<CommentBox calloutId={this.state.callout.id}/>
     	</div>
     );
   }
