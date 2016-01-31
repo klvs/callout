@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, NavDropdown, Nav, MenuItem } from 'react-bootstrap'
 
+const logo = {
+  color: '#93c54b'
+}
+
+const nav = {
+  marginBottom: '0px'
+}
+
 export default class BSNav extends Component {
   constructor(props){
     super(props);
   }
   render() {
     return (
-      <Navbar>
+      <Navbar style={nav}>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Callout</a>
+            <a href="#">Callout <span style={logo}>{'{your city}'}</span></a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
