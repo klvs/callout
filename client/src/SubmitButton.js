@@ -85,7 +85,7 @@ export default class SubmitButton extends Component {
 	}
 	handleClick(e) {
 		console.log("handling click")
-		$("Button[id=uploadButton]").click(function(){
+		$("Button[id=uploadButton]").on('click', function(){
 			$("input[id=fileselector]").trigger('click');
 		});
 	}
