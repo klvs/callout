@@ -106,8 +106,8 @@ export default class Home extends Component {
 	    	<div>
 		    <Location style={mapStyles} center={this.state.center} value={this.state.markers}/>
 		    <SubmitButton submitHandler={this.handleSubmit}/>
-		    <SocialButtons url="callout.city" title="Callout"/>
-		    <CalloutThumbs thumbs={this.state.callouts}/>
+		    <SocialButtons url="callout.city" title="Callout"/>	
+		    <CalloutThumbs geo={this.state.center.position}/>
 	    	</div>
     );
   }

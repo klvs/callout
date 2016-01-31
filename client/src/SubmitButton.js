@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Modal, Button, Input, ButtonInput, Image } from 'react-bootstrap'
 import * as constants from './constants';
 
-const styles = {
-	"paddingTop": "1em"
-};
-
 const imgStyles = {
 	"padding": "1em",
 	"border": "1px solid black"
@@ -136,7 +132,7 @@ export default class SubmitButton extends Component {
 
 	render() {
 		return (
-			<div style={styles}>
+			<div>
 				<Button bsStyle="primary" bsSize="large" id="uploadButton" onClick={this.handleClick} block>UPLOAD IMAGE</Button>
     			<form id="upload" onSubmit={this.handleSubmit} action="/api/images/callout-imgs/upload">
     			<input id="fileselector" type="file" accept="image/*" capture="camera" onChange={this.handleFileSelect} style={{display: 'none'}}/>
@@ -148,7 +144,7 @@ export default class SubmitButton extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<Image style={imgStyles} src={this.state.data_uri} responsive/>
-					<form style={styles} className="SubmitIssueForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
+					<form className="SubmitIssueForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
 					<Input type="text" onChange={this.handleTitleChange} label="Title" placeholder="Enter title" value={this.state.title}/>
 					<Input type="text" onChange={this.handleDescriptionChange} label="Description" placeholder="Enter description" value={this.state.desc}/>
 					<ButtonInput type="submit" value={this.state.isUploading ? 'Uploading...' : 'Submit'} disabled={this.state.isUploading} block/>
