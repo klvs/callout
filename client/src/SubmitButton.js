@@ -74,6 +74,7 @@ export default class SubmitButton extends Component {
 				_that.setState({
 					data_uri: modifiedDataURL
 				});
+				_that.open();
 
 				var byteString = atob(modifiedBase64);
 
@@ -82,11 +83,7 @@ export default class SubmitButton extends Component {
 					ia[i] = byteString.charCodeAt(i);
 				}
 
-				var blob = new Blob([ia], {type: file.type});
-
-				var modified = new File([blob], file.name, {type: file.type});
-
-				_that.open();
+				var modified = new File([ia], file.name, {type: file.type});
 
 				var formData = new FormData()
 				formData.append('image', modified)
