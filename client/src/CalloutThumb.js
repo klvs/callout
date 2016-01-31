@@ -13,7 +13,7 @@ const colStyle = {
 	paddingLeft: '0px',
 	paddingRight: '0px',
 	position: 'relative',
-	width: '33%',
+	width: '33.3%',
 	height: '20%',
 	overflow: 'hidden'
 }
