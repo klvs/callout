@@ -7,7 +7,6 @@ import './geo';
 import CalloutThumbs from './CalloutThumbs'
 import * as constants from './constants';
 import * as callout from './CalloutController'
-import SocialButtons from './SocialButtons'
 
 export default class Home extends Component {
 
