@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Location from './Location';
-import BSNav from './BSNav'
 import { Row } from 'react-bootstrap'
 import SubmitButton from './SubmitButton'
 import './geo';
 import CalloutThumbs from './CalloutThumbs'
 import * as constants from './constants';
 import * as callout from './CalloutController'
+import SocialButtons from './SocialButtons'
 
 export default class Home extends Component {
 
@@ -99,10 +99,10 @@ export default class Home extends Component {
 
   render() {
     return (
-	    	<div className="container">
-	    	<BSNav/>
+	    	<div>
 		    <Location center={this.state.center} value={this.state.markers}/>
 		    <SubmitButton submitHandler={this.handleSubmit}/>
+		    <SocialButtons url="callout.city" title="Callout"/>	
 		    <CalloutThumbs geo={this.state.center.position}/>
 	    	</div>
     );

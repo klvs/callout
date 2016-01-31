@@ -1,4 +1,5 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
+import { Row, Col } from 'react-bootstrap'
 
 import {
   ShareButtons,
@@ -6,27 +7,47 @@ import {
   generateShareIcon
 } from 'react-share';
 
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton
+} = ShareButtons;
+
+const {
+  FacebookShareCount,
+  GooglePlusShareCount,
+  LinkedinShareCount
+} = ShareCounts;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const GooglePlusIcon = generateShareIcon('google');
+const LinkedinIcon = generateShareIcon('linkedin');
+
 export default class SocialButtons extends Component {
 	render() {
+		var shareUrl = this.props.url;
+		var shareTitle = this.props.title;
 		return (
-			<Row>
-				<div className="facebookShareContainer">
-					<FacebookShareButton
-						url = {this.props.url}
-						title = {this.props.title}
-						className = "FacebookShareButton"
-						<FacebookIcon
-							size={32}
-							round = {true}/>
-					</FacebookShareButton>
-					<FacebookShareCount
-						url={this.props.url}
-						className="FacebookShareCount">
-						{count => count}
-					</FacebookShareCount>
-				<div/>
-			</Row>
-		)
+				<div>
+						<FacebookShareButton
+							url = { shareUrl }
+							title = { shareTitle }
+							className = "FacebookShareButton">
+							<FacebookIcon
+								size={32}
+								round={true} />
+						</FacebookShareButton>
+						<TwitterShareButton
+							url = { shareUrl }
+							title = { shareTitle }
+							className = "TwitterShareButton">
+							<TwitterIcon
+								size={32}
+								round={true} />
+						</TwitterShareButton>
+				</div>
+		);
 	}
 }
-*/
