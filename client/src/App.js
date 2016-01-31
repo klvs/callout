@@ -3,12 +3,13 @@ import { Router, Route, Link, History, browserHistory} from 'react-router'
 import Home from './Home';
 import About from './About';
 import SingleCallout from './SingleCallout';
-import createHistory from 'history/lib/createHashHistory';
+// import createHistory from 'history/lib/createHashHistory';
 import BSNav from './BSNav'
+import history from './history'
 
-var history = createHistory({
-  queryKey: false
-});
+// var history = createHistory({
+//   queryKey: false
+// });
 
 const style = {
   background: "linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)), url('http://paper-backgrounds.com/textureimages/2012/08/cracked-concrete-wall-texture-hd.jpg')"
