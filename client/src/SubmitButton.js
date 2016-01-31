@@ -136,7 +136,7 @@ export default class SubmitButton extends Component {
     			<input id="fileselector" type="file" accept="image/*" capture="camera" onChange={this.handleFileSelect} style={{display: 'none'}}/>
 				</form>
 
-				<Modal show={this.state.showModal} onHide={this.close}>
+				<Modal show={this.state.showModal} onHide={this.close} style={{zIndex: 9999}}>
 				<Modal.Header closeButton>
 					<Modal.Title> Submit an issue </Modal.Title>
 				</Modal.Header>

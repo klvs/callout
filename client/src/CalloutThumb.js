@@ -6,7 +6,7 @@ const styles = {
 	bottom: '10px',
 	background: 'rgba(0,0,0,0.5)',
 	padding: '10px 10px 10px 10px',
-	zIndex: '9999'
+	zIndex: '999'
 };
 
 const colStyle = {
