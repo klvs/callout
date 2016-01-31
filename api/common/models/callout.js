@@ -33,7 +33,7 @@ module.exports = function(Callout) {
 		'upvote',
 		{
 			http: { path: '/upvote', verb: 'post' },
-			accepts: { ard: 'id', type: 'string', required: true },
+			accepts: { arg: 'id', type: 'string', required: true },
 			returns: { arg: 'voteCount', type: 'number' }	
 		}
 	);
@@ -41,7 +41,7 @@ module.exports = function(Callout) {
 		'downvote',
 		{
 			http: { path: '/downvote', verb: 'post' },
-			accepts: { ard: 'id', type: 'string', required: true },
+			accepts: { arg: 'id', type: 'string', required: true },
 			returns: [ { arg: 'err', type: 'string' }, { arg: 'voteCount', type: 'number' } ]	
 		}
 	);
