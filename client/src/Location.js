@@ -8,7 +8,7 @@ export default class Location extends Component {
   render() {
     return (
       <div>
-        <SimpleMap
+        <SimpleMap center={this.props.center}
           markers={this.props.value}
         />
       </div>

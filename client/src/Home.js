@@ -6,21 +6,23 @@ import SubmitButton from './SubmitButton'
 import './geo';
 import CalloutThumbs from './CalloutThumbs'
 import * as constants from './constants';
+import * as callout from './CalloutController'
 
 export default class Home extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
-			markers: [{
+			center: {
 		      position: {
 		        lat: 25.0112183,
 		        lng: 121.52067570000001,
 		      },
 		      key: "Taiwan",
 		      defaultAnimation: 2,
-	    	}],
-	    	callouts: [], // empty to start
+	    	},
+	    	callouts: [],
+	    	markers:[] // empty to start
 	  	}
 		this.render = this.render.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,29 +32,28 @@ export default class Home extends Component {
 		// console.log(navigator.location.getCurrentPosition());
 		navigator.geolocation.getAccurateCurrentPosition(position=> {
 			this.setState({				
-				markers: [{
+				center: {
 			      position: {
 			        lat: position.coords.latitude,
 			        lng: position.coords.longitude,
 			      },
 			      key: "You",
 			      defaultAnimation: 2,
-		    	}],
+		    	},
 	  		})
 		}, err=>{console.log(err)},
 		intermediatePosition=>{
 			this.setState({				
-				markers: [{
+				center: {
 			      position: {
 			        lat: intermediatePosition.coords.latitude,
 			        lng: intermediatePosition.coords.longitude,
 			      },
 			      key: "You",
 			      defaultAnimation: 2,
-		    	}],
+		    	},
 	  		})
 		})
-
 		// get the data
 		this.getCallouts();
 	}
@@ -61,8 +62,10 @@ export default class Home extends Component {
 	fetch(constants.API_ROOT + 'callouts?filter[order]=time desc').then((request)=>{
 			return request.json()
 		}).then((response=>{
-			console.log(response);
-			this.setState({callouts: response})
+			this.setState({
+				callouts: response,
+				markers: this.state.markers.concat(callout.transformToMarker(response))
+			})
 		}))		
 	}
 
@@ -78,7 +81,6 @@ export default class Home extends Component {
 				desc: item.desc
 			}
 		}
-		console.log(submission);
 		fetch(constants.API_ROOT + 'callouts', {
 			method: 'post',
 			headers: {
@@ -99,7 +101,7 @@ export default class Home extends Component {
     return (
 	    	<div className="container">
 	    	<BSNav/>
-		    <Location value={this.state.markers}/>
+		    <Location center={this.state.center} value={this.state.markers}/>
 		    <SubmitButton submitHandler={this.handleSubmit}/>
 		    <CalloutThumbs thumbs={this.state.callouts}/>
 	    	</div>
