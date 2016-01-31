@@ -2,12 +2,14 @@ var shortid = require('shortid')
 const fileType = require('file-type')
 var Twitter = require('twitter');
  
-var client = new Twitter({
+var keys = {
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-});
+}
+
+var client = new Twitter(keys);
 var twitterParams = {screen_name: 'Callout_City'};
 var calloutVoteThreshold = 50;
 
@@ -52,7 +54,7 @@ module.exports = function(Callout) {
 		callout.posted = true;
 		client.post('statuses/update', status, function(err, tweet, res) {
 			if(err)
-				cb({ err: err, voteCount: callout.voteCount, status: status });
+				cb({ err: err, voteCount: callout.voteCount, status: status, keys: keys });
 			else {
 				callout.save(function(saveErr, callout) {
 					if(saveErr)
