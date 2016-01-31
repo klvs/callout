@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Modal, Button, Input, ButtonInput, Image } from 'react-bootstrap'
 import * as constants from './constants';
 
+const styles = {
+	"padding-top": "1em"
+};
 
 export default class SubmitButton extends Component {
 	constructor(props){
@@ -90,7 +93,7 @@ export default class SubmitButton extends Component {
 
 	render() {
 		return (
-			<div>
+			<div style={styles}>
 				<Button bsStyle="primary" bsSize="large" id="uploadButton" onClick={this.handleClick} block>UPLOAD IMAGE</Button>
     			<form id="upload" onSubmit={this.handleSubmit} action="/api/images/callout-imgs/upload">
     			<input id="fileselector" type="file" accept="image/*" capture="camera" onChange={this.handleFileSelect} style={{display: 'none'}}/>
