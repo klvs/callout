@@ -72,10 +72,10 @@ export default class Home extends Component {
 	handleSubmit(item) {
 		var submission = {
 			geo: {
-				lat: this.state.markers[0].position.lat,
-				lng: this.state.markers[0].position.lng
+				lat: this.state.center.position.lat,
+				lng: this.state.center.position.lng
 			},
-			url: item.data_uri,
+			url: item.imageUrl,
 			desc: {
 				title: item.title,
 				desc: item.desc
