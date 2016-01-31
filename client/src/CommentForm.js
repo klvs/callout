@@ -42,7 +42,7 @@ export default class CommentForm extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<Input onChange={this.handleNameChange} type="text" label="Name" placeholder="Enter Name" value={this.state.name}/>
 				<Input onChange={this.handleCommentChange}type="textarea" label="Comment" placeholder="Enter Comment" value={this.state.comment}/>
-				<ButtonInput type="submit" value="Submit Button" />
+				<ButtonInput type="submit" value="Submit Comment" />
 			</form>
 		)
 	}

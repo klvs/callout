@@ -9,13 +9,17 @@ export default class CommentList extends Component {
 
 
 	render() {
-		if (this.props.data)
+		var header = ''
+		var comments = []
+		if (this.props.data) {
 			var comments = this.props.data.map((comment)=>{
 				return <Comment name={comment.name} comment={comment.text}/> 
 			})
+			header = "comments"
+		}
 		return (
 			<div>
-			<h2>comments</h2>
+			<h2>{header}</h2>
 			{comments}
 			</div>
 			)
