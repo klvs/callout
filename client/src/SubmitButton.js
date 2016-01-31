@@ -21,7 +21,7 @@ export default class SubmitButton extends Component {
 			data_uri: '',
 			imageName: '',
 			imageUrl: '',
-			uploading: true
+			isUploading: true
 		};
 		this.close = this.close.bind(this);
 		this.open = this.open.bind(this);
@@ -75,7 +75,7 @@ export default class SubmitButton extends Component {
 			this.setState({
 				imageName: res.result.files.image[0].name,
 				imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
-				uploading: false
+				isUploading: false
 			})
 		}).catch(err=> {
 			console.log(err)
@@ -126,7 +126,7 @@ export default class SubmitButton extends Component {
 					<form style={styles} className="SubmitIssueForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
 					<Input type="text" onChange={this.handleTitleChange} label="Title" placeholder="Enter title" value={this.state.title}/>
 					<Input type="text" onChange={this.handleDescriptionChange} label="Description" placeholder="Enter description" value={this.state.desc}/>
-					<ButtonInput type="submit" value="Submit" disabled={this.state.uploading}  />
+					<ButtonInput type="submit" value={this.state.isUploading ? 'Uploading...' : 'Submit'} disabled={this.state.isUploading} block/>
 					</form>
 				</Modal.Body>
 			</Modal>
