@@ -22,9 +22,9 @@ module.exports = function(Callout) {
 				callout.voteCount += value;
 				callout.save(function(err, callout) {
 					if(err)
-						cb(err, value);
+						cb(err, callout.voteCount);
 					else
-						cb(null, value);
+						cb(null, callout.voteCount);
 				});
 			}
 		});
