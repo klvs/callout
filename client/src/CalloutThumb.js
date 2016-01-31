@@ -24,6 +24,8 @@ const imgStyle = {
 	top: '50%',
 	width: '100%',
 	height: 'auto',
+	'WebkitTransform': 'translate(-50%,-50%)',
+	'msTransform': 'translate(-50%,-50%)',
 	transform: 'translate(-50%,-50%)'
 }
 
