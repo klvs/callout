@@ -9,16 +9,17 @@ const styles = {
 	padding: '10px 10px 10px 10px'
 };
 
-const padding ={
+const colStyle ={
 	paddingLeft:'0px',
-	paddingRight: '0px'
+	paddingRight: '0px',
+	maxHeight: '200px'
 }
 
 export default class CalloutThumb extends Component {
 	
   render() {
     return (
-      <Col style={padding} xs={6} sm={6} md={6} lg={6}>
+      <Col style={colStyle} xs={6} sm={6} md={6} lg={6}>
       	<h2 style={styles}>{this.props.data.desc.title}</h2>
       	<Image className="img-responsive" src={this.props.data.url} />
       </Col>

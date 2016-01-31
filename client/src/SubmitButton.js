@@ -48,7 +48,6 @@ export default class SubmitButton extends Component {
 	handleFileSelect(e) {
 		var reader = new FileReader();
 		var file = e.target.files[0];
-		console.log(file);
 		var _that = this;
 		reader.onload = function(upload){
 
@@ -90,14 +89,13 @@ export default class SubmitButton extends Component {
 					return req.json()
 					//this.getCallouts();
 				}).then(res=> {
-					console.log(res);
 					_that.setState({
 						imageName: res.result.files.image[0].name,
 						imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
 						isUploading: false
 					})
 				}).catch(err=> {
-					console.log(err)
+					console.warn(err)
 				});
 
 			}
