@@ -10,10 +10,13 @@ var history = createHistory({
   queryKey: false
 });
 
+const style = {
+  background: "linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)), url('http://paper-backgrounds.com/textureimages/2012/08/cracked-concrete-wall-texture-hd.jpg')"
+}
 export default class App extends Component {
   render() {
     return (
-    <div>
+    <div style={style}>
       <BSNav/>
       <Router history={history}>
           <Route path="/about" component={About}/>
