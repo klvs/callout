@@ -10,20 +10,12 @@ export default class CommentBox extends Component {
 			calloutId:'',
 			data: []
 		}
+		this.submitComment = this.submitComment.bind(this)
 	}
 
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			calloutId: nextProps.calloutId
-		})
-		this.loadComments();
-	}
-
-	loadComments() {
-		fetch(constants.API_ROOT + 'callouts/' + this.state.calloutId +'/comments').then((request)=>{
+	componentWillMount() {
+		fetch(constants.API_ROOT + 'callouts/' + this.props.calloutId +'/comments').then((request)=>{
 			return request.json()
-		}).then(req=>{
-			console.log('')
 		}).then(response=>{
 			this.setState({
 				data: response
@@ -39,7 +31,7 @@ export default class CommentBox extends Component {
 			text: item.comment,
 			name: item.name
 		}
-		fetch(constants.API_ROOT + 'callouts/'+this.state.calloutId+'/comments', {
+		fetch(constants.API_ROOT + 'callouts/'+this.props.calloutId+'/comments', {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
@@ -47,12 +39,12 @@ export default class CommentBox extends Component {
 			},
 			body: JSON.stringify(submission)
 		}).then(res=> {
-			console.log("submit success")
-			this.loadComments();
+			this.setState({
+				data: this.state.data.concat(submission)
+			})
 		}).catch(err=> {
 			console.log(err)
 		});
-		console.log("submit comments")
 	}
 
 	render() {

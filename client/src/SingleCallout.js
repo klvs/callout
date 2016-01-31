@@ -187,7 +187,7 @@ export default class SingleCallout extends Component {
 				</TwitterShareButton></Col>
 				</Row>
     		</div>
-	    	<CommentBox calloutId={this.state.callout.id}/>
+	    	<CommentBox calloutId={this.props.params.id}/>
     	</div>
     );
   }
