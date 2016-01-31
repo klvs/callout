@@ -83,7 +83,7 @@ export default class SubmitButton extends Component {
 					ia[i] = byteString.charCodeAt(i);
 				}
 
-				var modified = new File([ia], file.name, {type: file.type});
+				var modified = new Blob([ia], {type: file.type});
 
 				var formData = new FormData()
 				formData.append('image', modified)
