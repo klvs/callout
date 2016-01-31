@@ -13,7 +13,7 @@ const colStyle = {
 	paddingLeft: '0px',
 	paddingRight: '0px',
 	position: 'relative',
-	width: '33.3%',
+	maxWidth: '50%',
 	height: '20%',
 	overflow: 'hidden'
 }
@@ -33,7 +33,7 @@ export default class CalloutThumb extends Component {
 
   render() {
     return (
-      <Col style={colStyle} xs={4} sm={4} md={4} lg={4}>
+      <Col style={colStyle} xs={6} sm={6} md={6} lg={6}>
       	<h3 style={styles}>{this.props.data.desc.title}</h3>
       	<Image style={imgStyle} className="img-responsive" src={this.props.data.url} />
       </Col>
