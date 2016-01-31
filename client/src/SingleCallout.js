@@ -4,6 +4,26 @@ import { Row, Col, Image, Button } from 'react-bootstrap'
 import moment from 'moment'
 import CommentBox from './CommentBox'
 
+import SocialButtons from './SocialButtons'
+
+import {
+  ShareButtons,
+  ShareCounts,
+  generateShareIcon
+} from 'react-share';
+
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton
+} = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const GooglePlusIcon = generateShareIcon('google');
+const LinkedinIcon = generateShareIcon('linkedin');
+
 const containerLg = {
 	marginRight: 'auto',
 	marginLeft: 'auto',
@@ -141,8 +161,29 @@ export default class SingleCallout extends Component {
 		    	<Row>
 		    		<Col xs={12}  className="text-center">
 				      <Image style={imgContainer} className="img-responsive" src={this.state.callout.url}/>
-		      	</Col>
+		      		</Col>
 		    	</Row>
+				<Row style={{margin: '2em'}}>
+				<Col xs={6} style={{color: '#fff'}}><span style={{float: 'right'}}>Share this Callout to: </span></Col>
+				<Col xs={3}><FacebookShareButton
+					url = {"http://callout.city/callouts/"+this.state.callout.id}
+					title = "CallOut"
+					className = "FacebookShareButton"
+					style={{float: 'right'}}>
+					<FacebookIcon
+						size={24}
+						round={true} />
+				</FacebookShareButton></Col>
+				<Col xs={3}><TwitterShareButton
+				url = {"http://callout.city/callouts/"+this.state.callout.id}
+				  title = "CallOut"
+				  className = "TwitterShareButton"
+				  style={{float: 'left'}}>
+				  <TwitterIcon
+					  size={24}
+					  round={true} />
+				</TwitterShareButton></Col>
+				</Row>
 		    	<Row>
 		    		<Col xs={6} className="">
 				      <div className="text-mute">
