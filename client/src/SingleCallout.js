@@ -10,7 +10,6 @@ export default class SingleCallout extends Component {
 					callout: response
 				})
 			}))		
-		}
 	}
   render() {
     return (
