@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Row } from 'react-bootstrap'
 import CalloutThumb from './CalloutThumb'
+import { Link } from 'react-router'
 
 export default class CalloutThumbs extends Component {
   render() {
-    this.props.thumbs.map((item)=>{
-      console.log(item.geo);
-    })
     return (
       <Row>
         {this.props.thumbs.map((datum)=>{
-         return <CalloutThumb key={datum.id} data={datum}/>
+         return <Link to={`/callouts/${datum.id}`}> <CalloutThumb key={datum.id} data={datum}/> </Link>
         })}
       </Row>
     );
