@@ -4,6 +4,26 @@ import { Row, Col, Image, Button } from 'react-bootstrap'
 import moment from 'moment'
 import CommentBox from './CommentBox'
 
+import SocialButtons from './SocialButtons'
+
+import {
+  ShareButtons,
+  ShareCounts,
+  generateShareIcon
+} from 'react-share';
+
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton
+} = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const GooglePlusIcon = generateShareIcon('google');
+const LinkedinIcon = generateShareIcon('linkedin');
+
 const containerLg = {
 	marginRight: 'auto',
 	marginLeft: 'auto',
@@ -21,10 +41,13 @@ const containerInner = {
 const titleText = {
 	color:'#fff',
 	marginLeft: '10px',
+	textAlign: 'center'
 }
 
 const subtitle = {
-	marginLeft: '10px'
+	marginLeft: '10px',
+	color: '#fff',
+	fontSize: '0.7em'
 }
 
 const imgContainer = {
@@ -105,22 +128,28 @@ export default class SingleCallout extends Component {
   render() {
     return (
     	<div style={containerLg}>
-    		<div  style={containerInner}>
-		    	<Row>
+    		<div style={containerInner}>
+		    	<Row style={{height: '50px', margin: '1em'}}>
 		    		<Col xs={12}>
-				      	<h3 style={titleText}>{this.state.callout.desc.title}
-				      		<small style={subtitle}>{moment(this.state.callout.time).fromNow()}</small>
-				      	</h3>
-				      	<p style={{color:'white', paddingLeft:'10px'}}>{this.state.voteCount}</p>
-		      	</Col>
+				      	<h3 style={titleText}>{this.state.callout.desc.title}	</h3>
+		      		</Col>
+				</Row>
+				<Row style={{height: '50px', padding: '0.5em', textAlign: 'center'}}>
+		    		<Col xs={12}>
+				      <span style={subtitle}>{moment(this.state.callout.time).fromNow()}</span>
+		      		</Col>
 		    	</Row>
-		    	<Row>
-
-		    		<Col xs={12} className="text-center"> 
-			    		<Button onClick={this.upvoteCallout}>
+		    	<Row style={{height: '50px', margin: '1em', marginTop: '-1em'}}>
+		    		<Col xs={4} className="text-center">
+			    		<Button onClick={this.upvoteCallout} style={{float: 'right', height: '100%'}}>
 			    			<i className="fa fa-3x fa-thumbs-up"/>
 			    		</Button>
-			    		<Button onClick={this.downvoteCallout}>
+					</Col>
+					<Col xs={4} className="text-center">
+						<p style={{color:'white', paddingTop: '0.5em', fontSize: '1.5em', height: '100%'}}>{this.state.voteCount}</p>
+					</Col>
+					<Col xs={4} className="text-center">
+			    		<Button onClick={this.downvoteCallout} style={{float: 'left', height: '100%'}}>
 			    			<i className="fa fa-3x fa-thumbs-down"/>
 			    		</Button>
 		    		</Col>
@@ -129,8 +158,29 @@ export default class SingleCallout extends Component {
 		    	<Row>
 		    		<Col xs={12}  className="text-center">
 				      <Image style={imgContainer} className="img-responsive" src={this.state.callout.url}/>
-		      	</Col>
+		      		</Col>
 		    	</Row>
+				<Row style={{margin: '2em'}}>
+				<Col xs={6} style={{color: '#fff'}}><span style={{float: 'right'}}>Share this Callout to: </span></Col>
+				<Col xs={3}><FacebookShareButton
+					url = {"http://callout.city/callouts/"+this.state.callout.id}
+					title = "CallOut"
+					className = "FacebookShareButton"
+					style={{float: 'right'}}>
+					<FacebookIcon
+						size={24}
+						round={true} />
+				</FacebookShareButton></Col>
+				<Col xs={3}><TwitterShareButton
+				url = {"http://callout.city/callouts/"+this.state.callout.id}
+				  title = "CallOut"
+				  className = "TwitterShareButton"
+				  style={{float: 'left'}}>
+				  <TwitterIcon
+					  size={24}
+					  round={true} />
+				</TwitterShareButton></Col>
+				</Row>
 		    	<Row>
 		    		<Col xs={6} className="">
 				      <div className="text-mute">
