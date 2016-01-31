@@ -103,7 +103,7 @@ export default class Home extends Component {
 	    	<BSNav/>
 		    <Location center={this.state.center} value={this.state.markers}/>
 		    <SubmitButton submitHandler={this.handleSubmit}/>
-		    <CalloutThumbs thumbs={this.state.callouts}/>
+		    <CalloutThumbs geo={this.state.center.position}/>
 	    	</div>
     );
   }
