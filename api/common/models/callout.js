@@ -32,7 +32,7 @@ module.exports = function(Callout) {
 	function applyVote(calloutId, value, cb) {
 		Callout.findById(calloutId, function(err, callout) {
 			if(err)
-				cb(err {voteCount: 0});
+				cb(err, {voteCount: 0});
 			else {
 				callout.voteCount += value;
 				callout.save(function(saveErr, callout) {
