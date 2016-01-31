@@ -51,33 +51,58 @@ export default class SubmitButton extends Component {
 		console.log(file);
 		var _that = this;
 		reader.onload = function(upload){
-			_that.setState({
-				data_uri: upload.target.result
-			});
+
+			var dataURL = upload.target.result;
+			var base64 = dataURL.split(',')[1];
+
+			var img = document.createElement('img');
+			img.src = dataURL;
+
+			img.onload = function() {
+				var canvas = document.createElement('canvas');
+				canvas.width = img.naturalWidth;
+				canvas.height = img.naturalHeight;
+				var ctx = canvas.getContext('2d');
+				ctx.drawImage(img, 0, 0);
+				var modifiedDataURL = canvas.toDataURL(file.type, 0.5);
+				var modifiedBase64 = modifiedDataURL.split(',')[1];
+
+				_that.setState({
+					data_uri: modifiedDataURL
+				});
+				_that.open();
+
+				var byteString = atob(modifiedBase64);
+
+				var ia = new Uint8Array(byteString.length);
+				for (var i = 0; i < byteString.length; i++) {
+					ia[i] = byteString.charCodeAt(i);
+				}
+
+				var modified = new Blob([ia], {type: file.type});
+
+				var formData = new FormData()
+				formData.append('image', modified)
+				fetch(constants.API_ROOT + 'images/callout-imgs/upload', {
+					method: 'post',
+					body: formData
+				}).then(req=> {
+					return req.json()
+					//this.getCallouts();
+				}).then(res=> {
+					console.log(res);
+					_that.setState({
+						imageName: res.result.files.image[0].name,
+						imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
+						isUploading: false
+					})
+				}).catch(err=> {
+					console.log(err)
+				});
+
+			}
 		}
 		reader.readAsDataURL(file);
-		this.open();
-
-		var formData = new FormData()
-		formData.append('image', file)
-		fetch(constants.API_ROOT + 'images/callout-imgs/upload', {
-			method: 'post',
-			body: formData
-		}).then(req=> {
-			return req.json()
-			//this.getCallouts();
-		}).then(res=> {
-			console.log(res);
-			this.setState({
-				imageName: res.result.files.image[0].name,
-				imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
-				isUploading: false
-			})
-		}).catch(err=> {
-			console.log(err)
-		});
-
-
 	}
 
 	handleSubmit(e) {

@@ -15,7 +15,7 @@ export default function SimpleMap (props) {
       <GoogleMap containerProps={{
           style: {
             height: "50%",
-            minHeight:'250px'
+            minHeight: '200px'
           },
         }}
         defaultZoom={14}
