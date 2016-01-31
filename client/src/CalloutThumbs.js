@@ -33,8 +33,8 @@ export default class CalloutThumbs extends Component {
 
   render() {
     return (
-    	<div xs={12} sm={12} md={12} lg={12}>
-      <Row>
+    	<div>
+      <Row xs={12} sm={12} md={12} lg={12}>
         {this.state.thumbs.map((datum)=>{
          return <Link key={datum.id} to={`/callouts/${datum.id}`}> <CalloutThumb data={datum}/> </Link>
         })}
