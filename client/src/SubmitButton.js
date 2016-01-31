@@ -55,33 +55,103 @@ export default class SubmitButton extends Component {
 		console.log(file);
 		var _that = this;
 		reader.onload = function(upload){
-			_that.setState({
-				data_uri: upload.target.result
-			});
+
+			var dataURL = upload.target.result;
+			var base64 = dataURL.split(',')[1];
+
+			var img = document.createElement('img');
+			img.src = dataURL;
+
+			img.onload = function() {
+				var canvas = document.createElement('canvas');
+				canvas.width = img.naturalWidth;
+				canvas.height = img.naturalHeight;
+				var ctx = canvas.getContext('2d');
+				ctx.drawImage(img, 0, 0);
+				var modifiedDataURL = canvas.toDataURL(file.type, 0.5);
+				var modifiedBase64 = modifiedDataURL.split(',')[1];
+
+				_that.setState({
+					data_uri: modifiedDataURL
+				});
+				_that.open();
+
+				var byteString = atob(modifiedBase64);
+
+				var ia = new Uint8Array(byteString.length);
+				for (var i = 0; i < byteString.length; i++) {
+					ia[i] = byteString.charCodeAt(i);
+				}
+
+				var blob = new Blob([ia], {type: file.type});
+
+				var modified = new File([blob], file.name, {type: file.type});
+
+				var formData = new FormData()
+				formData.append('image', modified)
+				fetch(constants.API_ROOT + 'images/callout-imgs/upload', {
+					method: 'post',
+					body: formData
+				}).then(req=> {
+					return req.json()
+					//this.getCallouts();
+				}).then(res=> {
+					console.log(res);
+					_that.setState({
+						imageName: res.result.files.image[0].name,
+						imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
+						isUploading: false
+					})
+				}).catch(err=> {
+					console.log(err)
+				});
+
+			}
+
+			//var newImageData = ctx.toDataURL(file.type, 0.3);
+
+			//console.log(newImageData);
+
+			/*console.log(arrayBuffer);
+
+			var blob = new Blob([arrayBuffer], {type: file.type})
+
+			console.log(blob);
+
+			var modified = new File([blob], file.name, {type: file.type});
+
+			console.log(modified);
+
+			var modifiedReader = new FileReader();
+
+			modifiedReader.onload = function(img){
+				_that.setState({
+					data_uri: img.target.result
+				});
+				_that.open();
+			}
+			modifiedReader.readAsDataURL(modified);
+
+			var formData = new FormData()
+			formData.append('image', modified)
+			/*fetch(constants.API_ROOT + 'images/callout-imgs/upload', {
+				method: 'post',
+				body: formData
+			}).then(req=> {
+				return req.json()
+				//this.getCallouts();
+			}).then(res=> {
+				console.log(res);
+				_that.setState({
+					imageName: res.result.files.image[0].name,
+					imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
+					isUploading: false
+				})
+			}).catch(err=> {
+				console.log(err)
+			});*/
 		}
 		reader.readAsDataURL(file);
-		this.open();
-
-		var formData = new FormData()
-		formData.append('image', file)
-		fetch(constants.API_ROOT + 'images/callout-imgs/upload', {
-			method: 'post',
-			body: formData
-		}).then(req=> {
-			return req.json()
-			//this.getCallouts();
-		}).then(res=> {
-			console.log(res);
-			this.setState({
-				imageName: res.result.files.image[0].name,
-				imageUrl: 'http://callout-imgs.s3.amazonaws.com/'+res.result.files.image[0].name,
-				isUploading: false
-			})
-		}).catch(err=> {
-			console.log(err)
-		});
-
-
 	}
 
 	handleSubmit(e) {
