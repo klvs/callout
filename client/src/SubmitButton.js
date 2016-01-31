@@ -6,6 +6,11 @@ const styles = {
 	"padding-top": "1em"
 };
 
+const imgStyles = {
+	"padding": "1em",
+	"border": "1px solid black"
+}
+
 export default class SubmitButton extends Component {
 	constructor(props){
 		super(props);
@@ -117,7 +122,7 @@ export default class SubmitButton extends Component {
 					<Modal.Title> Submit an issue </Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Image src={this.state.data_uri} responsive/>
+					<Image style={imgStyles} src={this.state.data_uri} responsive/>
 					<form style={styles} className="SubmitIssueForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
 					<Input type="text" onChange={this.handleTitleChange} label="Title" placeholder="Enter title" value={this.state.title}/>
 					<Input type="text" onChange={this.handleDescriptionChange} label="Description" placeholder="Enter description" value={this.state.desc}/>
